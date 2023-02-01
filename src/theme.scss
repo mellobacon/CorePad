@@ -1,0 +1,18 @@
+:root {
+    --foreground: #ffffff;
+    --titlebar-color: #282828;
+}
+body {
+    color: var(--foreground);
+}
+button {
+    color: var(--foreground);
+}
+#titlebar {
+    background-color: var(--titlebar-color);
+}
+#menu {
+    &:hover {
+        background-color: #262626;
+    }
+}
