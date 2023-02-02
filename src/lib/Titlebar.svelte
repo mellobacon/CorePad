@@ -1,8 +1,12 @@
 <script lang="ts">
     import { appWindow } from "@tauri-apps/api/window";
+    import Menu from "./Menu.svelte";
+
+    let menubutton;
+    let open = false;
 </script>
 <div id="titlebar">
-    <button id="menu">==</button>
+    <button id="menu-button" bind:this={menubutton} on:click={() => {open = true}}>==</button>
     <span id="file-name">Filename.txt</span>
     <div id="handlebar" data-tauri-drag-region></div>
     <div id="window-controls">
@@ -27,6 +31,10 @@
     </div>
 </div>
 
+{#if open}
+    <Menu bind:open bind:button={menubutton}></Menu>
+{/if}
+
 <style lang="scss">
     $titlebar-height: 30px;
     #titlebar {
@@ -43,7 +51,7 @@
         height: $titlebar-height;
         z-index: 9998;
     }
-    #menu {
+    #menu-button {
         height: 100%;
         min-width: 35px;
         z-index: 9999;
@@ -53,6 +61,8 @@
         align-items: center;
         justify-content: center;
         width: -webkit-fill-available;
+        font-size: 14px;
+        margin-left: 70px;
     }
     #window-controls {
 		margin-left: auto;

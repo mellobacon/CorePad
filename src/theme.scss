@@ -1,6 +1,12 @@
 :root {
     --foreground: #ffffff;
-    --titlebar-color: #282828;
+    --titlebar-backgroundColor: #282828;
+    --menu-backgroundColor: #1f1f1f;
+    --editor-backgroundColor: #222222;
+    --gutter-foregroundColor: #898989;
+    --gutter-activeForegroundColor: #ffffff;
+    --editor-activeLineBackgroundColor: #2b2b2b;
+    --statusbar-backgroundColor: #282828;
 }
 body {
     color: var(--foreground);
@@ -9,10 +15,37 @@ button {
     color: var(--foreground);
 }
 #titlebar {
-    background-color: var(--titlebar-color);
+    background-color: var(--titlebar-backgroundColor);
+}
+#menu-button {
+    &:hover {
+        background-color: #1c1c1c;
+    }
 }
 #menu {
-    &:hover {
-        background-color: #262626;
-    }
+    background-color: var(--menu-backgroundColor);
+}
+.cm-activeLine {
+    background-color: var(--editor-activeLineBackgroundColor) !important;
+}
+.cm-gutters {
+    background-color: var(--editor-backgroundColor) !important;
+    color: var(--gutter-foregroundColor);
+    border: none !important;
+}
+.cm-activeLineGutter {
+    color: var(--gutter-activeForegroundColor) !important;
+    background-color: var(--editor-activeLineBackgroundColor) !important;
+}
+.cm-scroller {
+    background-color: var(--editor-backgroundColor);
+}
+.cm-cursor {
+    border-left-color: var(--foreground) !important;
+}
+.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-line::selection {
+    background-color: #4d5054 !important;
+}
+#status-bar {
+    background-color: var(--statusbar-backgroundColor);
 }

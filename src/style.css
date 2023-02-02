@@ -13,6 +13,7 @@
 body {
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 html, body {
@@ -37,18 +38,22 @@ input,
 button {
   border: none;
   background-color: transparent;
+  outline: none;
 }
 
 button {
   cursor: pointer;
 }
 
-input,
-button {
-  outline: none;
+ul, li {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 #app {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
