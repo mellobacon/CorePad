@@ -63,7 +63,7 @@
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             for (let text of editorView.state.doc) {
-                let content = text.split(" ");
+                let content = text.split(/\s/gm); // TODO: fix word count
                 wordcount = content.length;
                 for (const w of content) {
                     charcount += w.length;
@@ -85,6 +85,11 @@
         file = fileinfo;
         file_info.set(file);
         unsaved.set(modified);
+    }
+
+    export function setZoom(value) {
+        const editorContainer = document.querySelector(".cm-scroller") as HTMLElement;
+        editorContainer.style.setProperty("font-size", `${value - 2}px`, "important")
     }
 </script>
 <div id="editor" bind:this={editor} 
