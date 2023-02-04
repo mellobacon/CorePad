@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { setZoom } from "../Editor.svelte";
-
-
+    import { setZoom } from "../Editor.svelte";
     export let min;
     export let max;
     export let value;
