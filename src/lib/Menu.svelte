@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { saveFile } from "./scripts/file";
+  import { openFile, saveFile } from "./scripts/file";
 
 
     export let open;
@@ -21,7 +21,8 @@
             <li class="menu-item">
                 <div>New Window</div><div class="shortcut">Ctrl + Shift + N</div>
             </li>
-            <li class="menu-item">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" on:click={async() => {await openFile()}}>
                 <div>Open...</div><div class="shortcut">Ctrl + O</div>
             </li>
             <!-- svelte-ignore a11y-click-events-have-key-events -->

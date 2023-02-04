@@ -1,5 +1,11 @@
 import { dialog, fs, path } from "@tauri-apps/api";
-import { file, updateFileInfo } from "../Editor.svelte";
+import Editor, { file, updateFileInfo } from "../Editor.svelte";
+
+let editor: Editor;
+
+export function mountEditor() {
+    editor = new Editor({target: document.getElementById("container")});
+}
 export async function saveFile(saveAs = false) {
     let _path = file.path;
     let name = file.filename === "" ? "*" : file.filename;  
@@ -15,5 +21,7 @@ export async function openFile() {
     let _path = await dialog.open() as string;
     let name = _path.split(path.sep).pop();
     let content = await fs.readTextFile(_path);
+    editor.$destroy();
+    editor = new Editor({target: document.getElementById("container"), props:{content: content}});
     updateFileInfo({filename: name, path: _path, content: content});
 }

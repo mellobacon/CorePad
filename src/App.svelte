@@ -1,13 +1,16 @@
 <script lang="ts">
-    import Editor from "./lib/Editor.svelte";
+    import { onMount } from "svelte";
+    import { mountEditor } from "./lib/scripts/file";
     import Titlebar from "./lib/Titlebar.svelte";
     import "./theme.scss"; 
+
+    onMount(() => {
+        mountEditor();
+    })
 </script>
 
 <Titlebar></Titlebar>
-<div>
-    <Editor></Editor>
-</div>
+<div id="container"></div>
 
 <style lang="scss">
     div {

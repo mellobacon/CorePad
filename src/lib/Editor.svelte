@@ -11,6 +11,7 @@
     
     let editor;
     let editorView;
+    export let content = "";
     onMount(() => {
         editorView = new EditorView({
             parent: editor,
@@ -32,7 +33,8 @@
                         ...historyKeymap,
                         ...searchKeymap,
                     ])
-                ]
+                ],
+                doc: content
             })
         })
         file = $file_info;
