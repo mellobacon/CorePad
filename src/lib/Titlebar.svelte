@@ -1,6 +1,6 @@
 <script lang="ts">
     import { appWindow } from "@tauri-apps/api/window";
-  import { file_info } from "./Editor.svelte";
+    import { file_info } from "./Editor.svelte";
     import Menu from "./Menu.svelte";
 
     let menubutton;
