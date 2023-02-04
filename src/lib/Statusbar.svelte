@@ -1,11 +1,23 @@
 <script lang="ts">
     import type { Writable } from "svelte/store";
-  import Slider from "./Inputs/Slider.svelte";
+    import Slider from "./Inputs/Slider.svelte";
 
     export let doc_info: Writable<{ words: number; chars: number; }>;
     export let line_info: Writable<{ ln: string; col: string; }>;
     export let unsaved: Writable<boolean>;
+
+    let open = false;
+    let zoom;
+    let zoomref;
+
+    let zoom_value = 100;
 </script>
+
+<svelte:window on:click={(e) => {
+    if (open && !zoomref.contains(e.target) && !zoom.contains(e.target)) {
+        open = false;
+    }
+}}></svelte:window>
 
 <div id="status-bar">
     <div id="app-name">CorePad</div>
@@ -15,15 +27,18 @@
     <div id="file-info">
         <span id="modified" class:modified={$unsaved}>Modified</span>
         <span id="line-info">Ln {$line_info.ln}, Col {$line_info.col}</span>
-        <span id="zoom">Zoom: 100%</span>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <span id="zoom" bind:this={zoomref} on:click={() => {open = true}}>Zoom: {zoom_value}%</span>
         <span id="linefeed">CLRF</span>
         <span id="charset">UTF-8</span>
     </div>
 </div>
 
-<div id="zoom-slider">
-    <Slider min={10} max={500} default_value={100}></Slider>
-</div>
+{#if open}
+    <div id="zoom-slider" bind:this={zoom}>
+        <Slider min={10} max={500} bind:value={zoom_value}></Slider>
+    </div>
+{/if}
 
 <style lang="scss">
     #status-bar {

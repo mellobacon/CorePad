@@ -1,19 +1,25 @@
 <script lang="ts">
+  import { setZoom } from "../Editor.svelte";
+
+
     export let min;
     export let max;
-    export let default_value;
+    export let value;
 </script>
 
 <div id="slider">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="slider-button" on:click={() => {default_value--}}>-</div>
-    <input bind:value={default_value} id="sliderinput" type="range" min={min} max={max} class="sliderinput">
+    <div class="slider-button" on:click={() => {value--; setZoom(value/6.25);}}>-</div>
+    <input bind:value={value} id="sliderinput" type="range" min={min} max={max} class="sliderinput" on:input={() => {
+        setZoom(value/6.25);
+    }}
+    >
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="slider-button" on:click={() => {default_value++}}>+</div>
+    <div class="slider-button" on:click={() => {value++; setZoom(value/6.25);}}>+</div>
 </div>
 <div id="slider-info">
     <span class="minus">10%</span>
-    <label class="label" for="sliderinput">{default_value}%</label>
+    <label class="label" for="sliderinput">{value}%</label>
     <span class="plus">500%</span>
 </div>
 
