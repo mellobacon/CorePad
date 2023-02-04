@@ -1,5 +1,6 @@
 <script lang="ts">
     import { appWindow } from "@tauri-apps/api/window";
+  import { file_info } from "./Editor.svelte";
     import Menu from "./Menu.svelte";
 
     let menubutton;
@@ -7,7 +8,7 @@
 </script>
 <div id="titlebar">
     <button id="menu-button" bind:this={menubutton} on:click={() => {open = true}}>==</button>
-    <span id="file-name">Filename.txt</span>
+    <span id="file-name">{$file_info.filename}</span>
     <div id="handlebar" data-tauri-drag-region></div>
     <div id="window-controls">
         <!-- svelte-ignore a11y-click-events-have-key-events -->

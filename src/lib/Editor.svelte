@@ -6,7 +6,7 @@
     import {defaultHighlightStyle, syntaxHighlighting} from "@codemirror/language"
     import {defaultKeymap, history, historyKeymap} from "@codemirror/commands"
     import {searchKeymap} from "@codemirror/search"
-    import { onMount } from "svelte";
+    import { onMount, tick } from "svelte";
     import Statusbar from "./Statusbar.svelte";
     
     let editor;
@@ -35,7 +35,20 @@
                 ]
             })
         })
+        file = $file_info;
     });
+
+    async function updateContent() {
+        await tick();
+        let content = "";
+        for (const text of editorView.state.doc) {
+            content += `${text}`;
+        }
+        file.content = content;
+        if (!$unsaved) {
+            unsaved.set(true);
+        }
+    }
 
     function getLineInfo() {
         let linenumber = editorView.state.doc.lineAt(editorView.state.selection.main.head).number;
@@ -44,10 +57,9 @@
     }
 
     let timeout = null;
+    let wordcount = 0;
+    let charcount = 0;
     function getDocInfo() {
-        let wordcount = 0;
-        let charcount = 0;
-
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             for (let text of editorView.state.doc) {
@@ -65,11 +77,21 @@
     import { writable } from "svelte/store";
     export let line_info = writable({ln: "-", col: "-"});
     export let doc_info = writable({words: 0, chars: 0});
+    export let file = {filename: "untitled.txt", path: "", content: ""};
+    export let file_info = writable(file);
+    export let unsaved = writable(false);
+
+    export function updateFileInfo(fileinfo: { filename: string; path: string; content: string; }, modified = false) {
+        file = fileinfo;
+        file_info.set(file);
+        unsaved.set(modified);
+    }
 </script>
 <div id="editor" bind:this={editor} 
     on:input={(e) => {
         getLineInfo();
         getDocInfo();
+        updateContent();
     }}
     on:mousedown={(e) => {getLineInfo()}}
     on:keydown={(e) => {
@@ -85,7 +107,7 @@
         }
     }}
 />
-<Statusbar line_info={line_info} doc_info={doc_info}></Statusbar>
+<Statusbar line_info={line_info} doc_info={doc_info} unsaved={unsaved}></Statusbar>
 
 <style lang="scss">
     #editor {

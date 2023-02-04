@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { saveFile } from "./scripts/file";
+
+
     export let open;
     export let button;
 </script>
@@ -21,10 +24,12 @@
             <li class="menu-item">
                 <div>Open...</div><div class="shortcut">Ctrl + O</div>
             </li>
-            <li class="menu-item">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" on:click={async() => {await saveFile();}}>
                 <div>Save...</div><div class="shortcut">Ctrl + S</div>
             </li>
-            <li class="menu-item">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" on:click={async() => {await saveFile(true);}}>
                 <div>Save As...</div><div class="shortcut">Ctrl + Shift + S</div>
             </li>
             <li class="menu-item">
@@ -45,6 +50,7 @@
         padding: 5px 0;
         top: 30px;
         font-size: 14px;
+        box-shadow: 2px 2px 2px rgb(0 0 0 / 21%);
     }
     .menu-item {
         display: flex;
