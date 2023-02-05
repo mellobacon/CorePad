@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { makeEmptyFile, openFile, saveFile } from "./scripts/file";
+    import { makeEmptyFile, openFile, saveFile } from "./scripts/file";
+    import {window} from "@tauri-apps/api";
 
 
     export let open;
@@ -23,10 +24,10 @@
             <li class="menu-item" on:click={async () => {
                 let webview = await import("@tauri-apps/api/window");
                 let label = (0|Math.random()*6.04e7).toString(36);
-                const window = new webview.WebviewWindow(label, {url: "http://localhost:1420"});
+                const window = new webview.WebviewWindow(label, {url: "http://localhost:1420", decorations: false});
                 window.once('tauri://created', function (w) {
                     // webview window successfully created
-                    window.setDecorations(false);
+                    console.log("webview window successfully created");
                 })
                 window.once('tauri://error', function (e) {
                     // an error occurred during webview window creation
@@ -47,7 +48,10 @@
             <li class="menu-item" on:click={async() => {await saveFile(true);}}>
                 <div>Save As...</div><div class="shortcut">Ctrl + Shift + S</div>
             </li>
-            <li class="menu-item">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" on:click={() => {
+                // print the content somehow idk
+            }}>
                 <div>Print...</div><div class="shortcut">Ctrl + P</div>
             </li>
             <li class="menu-item">

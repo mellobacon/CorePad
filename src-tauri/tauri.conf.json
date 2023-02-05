@@ -46,7 +46,7 @@
         "hide": true,
         "maximize": true,
         "minimize": true,
-        "print": false,
+        "print": true,
         "requestUserAttention": false,
         "setAlwaysOnTop": false,
         "setCursorGrab": false,
