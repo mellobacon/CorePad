@@ -6,6 +6,12 @@ let editor: Editor;
 export function mountEditor() {
     editor = new Editor({target: document.getElementById("container")});
 }
+
+export function makeEmptyFile() {
+    editor.$destroy();
+    editor = new Editor({target: document.getElementById("container"), props:{content: ""}});
+    updateFileInfo({filename: "untitled.txt", path: "", content: ""});
+}
 export async function saveFile(saveAs = false) {
     let _path = file.path;
     let name = file.filename === "" ? "*" : file.filename;  

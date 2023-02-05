@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { openFile, saveFile } from "./scripts/file";
+  import { makeEmptyFile, openFile, saveFile } from "./scripts/file";
 
 
     export let open;
@@ -15,10 +15,24 @@
 {#if open}
     <div id="menu">
         <ul>
-            <li class="menu-item">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" on:click={() => {makeEmptyFile();}}>
                 <div>New File</div><div class="shortcut">Ctrl + N</div>
             </li>
-            <li class="menu-item">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" on:click={async () => {
+                let webview = await import("@tauri-apps/api/window");
+                let label = (0|Math.random()*6.04e7).toString(36);
+                const window = new webview.WebviewWindow(label, {url: "http://localhost:1420"});
+                window.once('tauri://created', function (w) {
+                    // webview window successfully created
+                    window.setDecorations(false);
+                })
+                window.once('tauri://error', function (e) {
+                    // an error occurred during webview window creation
+                    console.log("an error occurred during webview window creation");
+                })
+            }}>
                 <div>New Window</div><div class="shortcut">Ctrl + Shift + N</div>
             </li>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
