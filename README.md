@@ -1,7 +1,5 @@
-# Tauri + Svelte + Typescript
+# CorePad
 
-This template should help get you started developing with Tauri, Svelte and TypeScript in Vite.
+Corepad is a simple notepad made with Tauri + Svelte. This was a practice project to reorganize my scope and breakdown the neccessary components for my other project [Nucleus](https://github.com/mellobacon/Nucleus).
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+If you want to try it out, you can [download it here](). Keep in mind that this was made for Windows only and there are not plans for other OS support at this time.
