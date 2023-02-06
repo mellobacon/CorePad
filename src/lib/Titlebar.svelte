@@ -2,12 +2,15 @@
     import { appWindow } from "@tauri-apps/api/window";
     import { file_info } from "./Editor.svelte";
     import Menu from "./Menu.svelte";
+    import {Menu as MenuIcon} from "carbon-icons-svelte";
 
     let menubutton;
     let open = false;
 </script>
 <div id="titlebar">
-    <button id="menu-button" bind:this={menubutton} on:click={() => {open = true}}>==</button>
+    <button id="menu-button" bind:this={menubutton} on:click={() => {open = true}}>
+        <MenuIcon></MenuIcon>
+    </button>
     <span id="file-name">{$file_info.filename}</span>
     <div id="handlebar" data-tauri-drag-region></div>
     <div id="window-controls">
@@ -56,6 +59,9 @@
         height: 100%;
         min-width: 35px;
         z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     #file-name {
         display: flex;
@@ -77,11 +83,7 @@
 			text-align: center;
 			padding: 0 5px;
 			font-size: 14px;
-			color: white;
 			cursor: pointer;
-			&:not(#close):hover {
-				background-color: #262626;
-			}
 			&#close:hover {
 				background-color: #ff3131;
 			}
