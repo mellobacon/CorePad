@@ -56,3 +56,13 @@ button {
 #zoom-slider {
     background-color: var(--menu-backgroundColor);
 }
+input[type="radio"] {
+    border: solid 1px var(--foreground);
+    &::before {
+        box-shadow: inset 1em 1em var(--foreground);
+        background-color: var(--foreground);
+    }
+}
+input {
+    color: var(--foreground);
+}

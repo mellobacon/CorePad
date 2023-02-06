@@ -1,8 +1,6 @@
 <script lang="ts">
-    let items = [
-            {name: "Light", action: () => {console.log("e")}},
-            {name: "Dark", action: () => {console.log("e")}},
-            {name: "Use OS Theme", action: () => {console.log("e")}}
+    export let items = [
+            {name: "N/A", action: () => {console.log()}},
         ];
 </script>
 
@@ -27,10 +25,9 @@
     input[type="radio"] {
         appearance: none;
         margin: 0;
-        width: 12px;
-        height: 12px;
+        width: 15px;
+        height: 15px;
         border-radius: 50%;
-        border: solid 1px white;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -45,8 +42,6 @@
             height: 6px;
             border-radius: 50%;
             transition: 120ms transform ease-in-out;
-            box-shadow: inset 1em 1em white;
-            background-color: white;
             transform: scale(0);
         }
     }

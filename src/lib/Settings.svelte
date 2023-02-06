@@ -1,17 +1,32 @@
 <script lang="ts">
+    import ColorPicker from "./Inputs/ColorPicker.svelte";
     import Selectors from "./Inputs/Selectors.svelte";
 
+    let overlay: HTMLElement;
+    let themes = [
+        {name: "Light", action: () => {console.log("e")}},
+        {name: "Dark", action: () => {console.log("e")}},
+        {name: "Use OS Theme", action: () => {console.log("e")}}
+    ];
 </script>
 
-<div id="overlay">
+<div id="overlay" bind:this={overlay}>
     <div id="settings">
+        <div class="window-controls">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div on:click={() => {overlay.remove();}}></div>
+        </div>
         <div class="title">
             <div class="header">Personalization</div>
             <div class="divider"></div>
         </div>
         <div class="setting">
             <div class="subtitle">Theme</div>
-            <Selectors />
+            <Selectors items={themes} />
+        </div>
+        <div class="setting">
+            <div class="subtitle">Accent Color</div>
+            <ColorPicker></ColorPicker>
         </div>
     </div>
 </div>
@@ -37,6 +52,28 @@
         display: flex;
         flex-direction: column;
         padding: 20px;
+        .window-controls {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            div {
+                height: 25px;
+                width: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+                &:hover {
+                    background-color: #333;
+                    cursor: pointer;
+                }
+            }
+            div::before {
+				content: "\2715";
+				line-height: 30px;
+			}
+        }
         .setting {
             padding-left: 30px;
             margin-top: 7px;
@@ -51,6 +88,7 @@
             align-items: center;
             width: 100%;
             padding-left: 30px;
+            margin-top: 20px;
         }
         .divider {
             height: 0.675px;
