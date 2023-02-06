@@ -18,7 +18,6 @@
     }
     input[type="text"] {
         appearance: none;
-        background-color: #333;
         width: 90px;
         height: 25px;
         text-align: center;

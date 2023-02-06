@@ -7,6 +7,16 @@
     --gutter-activeForegroundColor: #ffffff;
     --editor-activeLineBackgroundColor: #2b2b2b;
     --statusbar-backgroundColor: #282828;
+    --input-backgroundColor: #333;
+    --slider-backgroundColor: #d3d3d3;
+    --slider-thumbColor: #04AA6D;
+    --menuItem-hoverBackgroundColor: #2b2b2b;
+    --overlay-backgroundColor: #4141411a;
+    --model-backgroundColor: #1f1f1f;
+    --model-buttonHoverColor: #333;
+    --statusbar-itemHoverColor: #333;
+    --titlebar-buttonHoverColor: #1c1c1c;
+    --statusbar-accentColor: #E5DD13;
 }
 body {
     color: var(--foreground);
@@ -14,16 +24,34 @@ body {
 button {
     color: var(--foreground);
 }
+input[type="radio"] {
+    border: solid 1px var(--foreground);
+    &::before {
+        box-shadow: inset 1em 1em var(--foreground);
+        background-color: var(--foreground);
+    }
+}
+input[type="text"] {
+    background-color: var(--input-backgroundColor);
+}
+input {
+    color: var(--foreground);
+}
 #titlebar {
     background-color: var(--titlebar-backgroundColor);
 }
 #menu-button {
     &:hover {
-        background-color: #1c1c1c;
+        background-color: var(titlebar-buttonHoverColor);
     }
 }
 #menu {
     background-color: var(--menu-backgroundColor);
+}
+.menu-item {
+    &:hover {
+        background-color: var(--menuItem-hoverBackgroundColor);
+    }
 }
 .cm-activeLine {
     background-color: var(--editor-activeLineBackgroundColor) !important;
@@ -48,21 +76,29 @@ button {
 }
 #status-bar {
     background-color: var(--statusbar-backgroundColor);
+    #file-info span:hover {
+        background-color: var(--statusbar-itemHoverColor);
+    }
 }
 #modified {
-    background-color: #333;
-    color: #E5DD13;
+    background-color: var(--statusbar-itemHoverColor);
+    color: var(--statusbar-accentColor);
 }
 #zoom-slider {
     background-color: var(--menu-backgroundColor);
 }
-input[type="radio"] {
-    border: solid 1px var(--foreground);
-    &::before {
-        box-shadow: inset 1em 1em var(--foreground);
-        background-color: var(--foreground);
+.sliderinput {
+    background-color: var(--slider-backgroundColor);
+    &::-webkit-slider-thumb {
+        background-color: var(--slider-thumbColor);
     }
 }
-input {
-    color: var(--foreground);
+#overlay {
+    background-color: var(--overlay-backgroundColor);
+}
+#settings {
+    background-color: var(--model-backgroundColor);
+    .window-controls div:hover {
+        background-color: var(--model-buttonHoverColor);
+    }
 }

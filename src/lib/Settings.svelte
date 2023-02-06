@@ -1,12 +1,13 @@
 <script lang="ts">
+    import { setTheme } from "../config/config";
     import ColorPicker from "./Inputs/ColorPicker.svelte";
     import Selectors from "./Inputs/Selectors.svelte";
 
     let overlay: HTMLElement;
     let themes = [
-        {name: "Light", action: () => {console.log("e")}},
-        {name: "Dark", action: () => {console.log("e")}},
-        {name: "Use OS Theme", action: () => {console.log("e")}}
+        {name: "Light", action: async () => {await setTheme("light")}},
+        {name: "Dark", action: async () => {await setTheme("dark")}},
+        //{name: "Use OS Theme", action: () => {console.log("e")}}
     ];
 </script>
 
@@ -39,7 +40,6 @@
         width: 100%;
         height: 100%;
         backdrop-filter: blur(1.5px);
-        background-color: #4141411a;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -47,7 +47,6 @@
     #settings {
         width: 60%;
         height: 70%;
-        background-color: #1f1f1f;
         box-shadow: 0px 0px 19px 4px rgba(0, 0, 0, 0.4);
         display: flex;
         flex-direction: column;
@@ -65,7 +64,6 @@
                 justify-content: center;
                 padding: 5px;
                 &:hover {
-                    background-color: #333;
                     cursor: pointer;
                 }
             }

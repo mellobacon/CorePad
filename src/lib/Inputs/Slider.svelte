@@ -41,7 +41,6 @@
         appearance: none;
         width: 100%;
         height: 2px;
-        background: #d3d3d3;
         outline: none;
         opacity: 0.7;
         transition: opacity .2s;
@@ -54,7 +53,6 @@
             width: 7px;
             height: 20px;
             border-radius: 5px;
-            background: #04AA6D;
             cursor: pointer;
         }
     }

@@ -87,8 +87,5 @@
             width: 93px;
             font-size: 13px;
         }
-        &:hover {
-            background-color: #2b2b2b;
-        }
     }
 </style>

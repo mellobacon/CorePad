@@ -71,7 +71,6 @@
                 display: flex;
             }
             &:hover {
-                background-color: #333;
                 cursor: pointer;
             }
         }

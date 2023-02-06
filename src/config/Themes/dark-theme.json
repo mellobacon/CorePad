@@ -1,0 +1,23 @@
+{
+    "theme-name": "dark",
+    "theme": {
+        "foreground": "#ffffff",
+        "titlebar-backgroundColor": "#282828",
+        "menu-backgroundColor": "#1f1f1f",
+        "editor-backgroundColor": "#222222",
+        "gutter-foregroundColor": "#898989",
+        "gutter-activeForegroundColor": "#ffffff",
+        "editor-activeLineBackgroundColor": "#2b2b2b",
+        "statusbar-backgroundColor": "#282828",
+        "input-backgroundColor": "#333",
+        "slider-backgroundColor": "#d3d3d3",
+        "slider-thumbColor": "#04AA6D",
+        "menuItem-hoverBackgroundColor": "#2b2b2b",
+        "overlay-backgroundColor": "#4141411a",
+        "model-backgroundColor": "#1f1f1f",
+        "model-buttonHoverColor": "#333",
+        "statusbar-itemHoverColor": "#333",
+        "titlebar-buttonHoverColor": "#1c1c1c",
+        "statusbar-accentColor": "#E5DD13"
+    }
+}
