@@ -1,8 +1,12 @@
 <script lang="ts">
     import { makeEmptyFile, openFile, saveFile } from "./scripts/file";
+    import Settings from "./Settings.svelte";
 
     export let open;
     export let button;
+
+    let opensettings;
+    let settingsbutton;
 </script>
 
 <svelte:window on:click={(e) => {
@@ -53,13 +57,15 @@
             }}>
                 <div>Print...</div><div class="shortcut">Ctrl + P</div>
             </li>
-            <li class="menu-item">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" bind:this={settingsbutton} on:click={() => {
+                new Settings({target: document.getElementById("container")});
+            }}>
                 <div>Settings</div><div class="shortcut">Ctrl + Shift + N</div>
             </li>
         </ul>
     </div>
 {/if}
-
 <style lang="scss">
     #menu {
         position: absolute;
