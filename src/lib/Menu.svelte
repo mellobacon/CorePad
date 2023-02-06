@@ -1,7 +1,5 @@
 <script lang="ts">
     import { makeEmptyFile, openFile, saveFile } from "./scripts/file";
-    import {window} from "@tauri-apps/api";
-
 
     export let open;
     export let button;
@@ -50,7 +48,8 @@
             </li>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <li class="menu-item" on:click={() => {
-                // print the content somehow idk
+                //TODO: fix content from getting cutoff somehow
+                window.print();
             }}>
                 <div>Print...</div><div class="shortcut">Ctrl + P</div>
             </li>

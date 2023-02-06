@@ -1,59 +1,90 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
 }
+
 body {
-  margin: 0;
-  padding: 0;
-  position: relative;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
-html, body {
-  overflow: hidden;
+html,
+body {
+    overflow: hidden;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+    color: #535bf2;
 }
 
 h1 {
-  text-align: center;
+    text-align: center;
 }
 
 input,
 button {
-  border: none;
-  background-color: transparent;
-  outline: none;
+    border: none;
+    background-color: transparent;
+    outline: none;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 
-ul, li {
-  display: block;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+ul,
+li {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 #app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+@media print {
+
+    * {
+        overflow: visible !important;
+    }
+    body * {
+        visibility: hidden;
+    }
+
+    .cm-content,
+    .cm-content * {
+        visibility: visible;
+        white-space: pre-wrap !important;
+        word-wrap: break-word !important;
+        page-break-inside: avoid !important;
+    }
+
+    .cm-content {
+        display: block;
+        position: relative;
+        width: auto;
+        height: auto;
+        top: 0;
+        left: 0;
+        color: black;
+    }
 }
