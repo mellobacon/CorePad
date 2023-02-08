@@ -59,17 +59,15 @@
     }
 
     let timeout = null;
-    let wordcount = 0;
-    let charcount = 0;
     function getDocInfo() {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
-            for (let text of editorView.state.doc) {
-                let content = text.split(/\s/gm); // TODO: fix word count
-                wordcount = content.length;
-                for (const w of content) {
-                    charcount += w.length;
-                }
+            let wordcount = 0;
+            let charcount = 0;
+            let words = file.content.split(/\s/gm).filter(z => z !== '');
+            wordcount = words.length;
+            for (const word of words) {
+                charcount += word.length;
             }
             doc_info.set({words: wordcount, chars: charcount});
         }, 500)
@@ -132,5 +130,17 @@
     :global(.cm-scroller) {
         font-size: 14px !important;
         line-height: 1.3;
+    }
+    :global(.cm-scroller) {
+        &::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 20px;
+        }
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
     }
 </style>
