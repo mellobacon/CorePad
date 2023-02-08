@@ -6,6 +6,5 @@ If you want to try it out, you can [download it here](). Keep in mind that this 
 
 ## Screenshots
 
-___
-![image](https://user-images.githubusercontent.com/42365887/217102270-2ad1b17f-b02e-47bc-8dff-c361f3ce9866.png)
-![image](https://user-images.githubusercontent.com/42365887/217102295-aefcebda-8429-4c7c-a407-473b08b092f6.png)
+![image](https://user-images.githubusercontent.com/42365887/217658075-7b115bbd-4eeb-4f51-8c4f-8e3f574d2bb0.png)
+![image](https://user-images.githubusercontent.com/42365887/217658112-a83507d5-74fa-4d78-9a25-4e4d462a977b.png)
