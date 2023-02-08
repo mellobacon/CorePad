@@ -1,10 +1,12 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { getShortcuts } from "./config/config";
     import { mountEditor } from "./lib/scripts/file";
     import Titlebar from "./lib/Titlebar.svelte";
     import "./theme.scss"; 
 
-    onMount(() => {
+    onMount(async () => {
+        await getShortcuts();
         mountEditor();
     })
 </script>
