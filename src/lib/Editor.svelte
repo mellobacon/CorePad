@@ -59,17 +59,15 @@
     }
 
     let timeout = null;
-    let wordcount = 0;
-    let charcount = 0;
     function getDocInfo() {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
-            for (let text of editorView.state.doc) {
-                let content = text.split(/\s/gm); // TODO: fix word count
-                wordcount = content.length;
-                for (const w of content) {
-                    charcount += w.length;
-                }
+            let wordcount = 0;
+            let charcount = 0;
+            let words = file.content.split(/\s/gm).filter(z => z !== '');
+            wordcount = words.length;
+            for (const word of words) {
+                charcount += word.length;
             }
             doc_info.set({words: wordcount, chars: charcount});
         }, 500)
@@ -107,9 +105,6 @@
             case "Backspace": case "Enter":
                 getLineInfo();
                 getDocInfo();
-                if (!$unsaved) {
-                    unsaved.set(true);
-                }
                 break;
             case "ArrowRight": case "ArrowLeft": case "ArrowDown": case "ArrowUp":
                 getLineInfo();
