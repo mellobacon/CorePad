@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { makeEmptyFile, openFile, saveFile } from "./scripts/file";
+    import { shell } from "@tauri-apps/api";
+    import { makeEmptyFile, openFile, openNewWindow, saveFile } from "./scripts/file";
     import Settings from "./Settings.svelte";
 
     export let open;
     export let button;
-
-    let opensettings;
+    
     let settingsbutton;
 </script>
 
@@ -23,19 +23,7 @@
                 <div>New File</div><div class="shortcut">Ctrl + N</div>
             </li>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li class="menu-item" on:click={async () => {
-                let webview = await import("@tauri-apps/api/window");
-                let label = (0|Math.random()*6.04e7).toString(36);
-                const window = new webview.WebviewWindow(label, {url: "http://localhost:1420", decorations: false});
-                window.once('tauri://created', function (w) {
-                    // webview window successfully created
-                    console.log("webview window successfully created");
-                })
-                window.once('tauri://error', function (e) {
-                    // an error occurred during webview window creation
-                    console.log("an error occurred during webview window creation");
-                })
-            }}>
+            <li class="menu-item" on:click={async () => {await openNewWindow()}}>
                 <div>New Window</div><div class="shortcut">Ctrl + Shift + N</div>
             </li>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -61,7 +49,12 @@
             <li class="menu-item" bind:this={settingsbutton} on:click={() => {
                 new Settings({target: document.getElementById("container")});
             }}>
-                <div>Settings</div><div class="shortcut">Ctrl + Shift + N</div>
+                <div>Settings</div><div class="shortcut"></div>
+            </li>
+            <div class="divider"></div>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" on:click={() => {shell.open("https://github.com/mellobacon/CorePad")}}>
+                <div>About</div><div class="shortcut"></div>
             </li>
         </ul>
     </div>
@@ -87,5 +80,10 @@
             width: 93px;
             font-size: 13px;
         }
+    }
+    .divider {
+        height: 0.675px;
+        background-color: #333;
+        margin: 5px 0px;
     }
 </style>
