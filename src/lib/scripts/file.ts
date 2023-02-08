@@ -31,3 +31,16 @@ export async function openFile() {
     editor = new Editor({target: document.getElementById("container"), props:{content: content}});
     updateFileInfo({filename: name, path: _path, content: content});
 }
+export async function openNewWindow() {
+    let webview = await import("@tauri-apps/api/window");
+    let label = (0|Math.random()*6.04e7).toString(36);
+    const window = new webview.WebviewWindow(label, {url: "http://localhost:1420", decorations: false});
+    window.once('tauri://created', function (w) {
+        // webview window successfully created
+        console.log("webview window successfully created");
+    })
+    window.once('tauri://error', function (e) {
+        // an error occurred during webview window creation
+        console.log("an error occurred during webview window creation");
+    })
+}

@@ -45,6 +45,9 @@
         "startDragging": true,
         "unmaximize": true,
         "unminimize": true
+      },
+      "globalShortcut": {
+        "all": true
       }
     },
     "bundle": {
