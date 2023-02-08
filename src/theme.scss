@@ -17,6 +17,7 @@
     --statusbar-itemHoverColor: #333;
     --titlebar-buttonHoverColor: #333;
     --statusbar-accentColor: #E5DD13;
+    --scrollbar-backgroundColor: #847e7e8a;
 }
 body {
     color: var(--foreground);
@@ -75,6 +76,9 @@ input {
 }
 .cm-scroller {
     background-color: var(--editor-backgroundColor);
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-backgroundColor);
+    }
 }
 .cm-cursor {
     border-left-color: var(--foreground) !important;

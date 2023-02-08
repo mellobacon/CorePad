@@ -131,4 +131,16 @@
         font-size: 14px !important;
         line-height: 1.3;
     }
+    :global(.cm-scroller) {
+        &::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 20px;
+        }
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+    }
 </style>

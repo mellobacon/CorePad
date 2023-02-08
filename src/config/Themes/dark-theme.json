@@ -18,6 +18,7 @@
         "model-buttonHoverColor": "#333",
         "statusbar-itemHoverColor": "#333",
         "titlebar-buttonHoverColor": "#333",
-        "statusbar-accentColor": "#E5DD13"
+        "statusbar-accentColor": "#E5DD13",
+        "scrollbar-backgroundColor": "#847e7e8a"
     }
 }
