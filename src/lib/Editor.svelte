@@ -105,6 +105,9 @@
             case "Backspace": case "Enter":
                 getLineInfo();
                 getDocInfo();
+                if (!$unsaved) {
+                    unsaved.set(true);
+                }
                 break;
             case "ArrowRight": case "ArrowLeft": case "ArrowDown": case "ArrowUp":
                 getLineInfo();
