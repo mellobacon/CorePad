@@ -1,11 +1,11 @@
 <script lang="ts">
+    import { shell } from "@tauri-apps/api";
     import { makeEmptyFile, openFile, openNewWindow, saveFile } from "./scripts/file";
     import Settings from "./Settings.svelte";
 
     export let open;
     export let button;
-
-    let opensettings;
+    
     let settingsbutton;
 </script>
 
@@ -51,6 +51,11 @@
             }}>
                 <div>Settings</div><div class="shortcut"></div>
             </li>
+            <div class="divider"></div>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li class="menu-item" on:click={() => {shell.open("https://github.com/mellobacon/CorePad")}}>
+                <div>About</div><div class="shortcut"></div>
+            </li>
         </ul>
     </div>
 {/if}
@@ -75,5 +80,10 @@
             width: 93px;
             font-size: 13px;
         }
+    }
+    .divider {
+        height: 0.675px;
+        background-color: #333;
+        margin: 5px 0px;
     }
 </style>
