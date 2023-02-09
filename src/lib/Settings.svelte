@@ -2,6 +2,7 @@
     import { setTheme } from "../config/config";
     import ColorPicker from "./Inputs/ColorPicker.svelte";
     import Selectors from "./Inputs/Selectors.svelte";
+    import config from "../config/config.json";
 
     let overlay: HTMLElement;
     let themes = [
@@ -23,7 +24,7 @@
         </div>
         <div class="setting">
             <div class="subtitle">Theme</div>
-            <Selectors items={themes} />
+            <Selectors selected={config.theme} items={themes} />
         </div>
         <div class="setting">
             <div class="subtitle">Accent Color</div>
