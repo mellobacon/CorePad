@@ -23,6 +23,7 @@ export async function getShortcuts() {
         //{shortcut: "CommandOrControl+Shift+S", action: () => {console.log('Shortcut triggered3');}},
         {shortcut: "CommandOrControl+P", action: () => {window.print()}}
     ]
+    await unregisterAll();
     for (const {shortcut, action} of shortcuts) {
         await register(shortcut, action);
     }
