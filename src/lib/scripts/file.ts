@@ -1,5 +1,6 @@
 import { dialog, fs, path } from "@tauri-apps/api";
-import Editor, { file, updateFileInfo } from "../Editor.svelte";
+import Editor, { file, updateFileInfo, unsaved } from "../Editor.svelte";
+import { get } from 'svelte/store';
 
 let editor: Editor;
 
@@ -7,7 +8,8 @@ export function mountEditor() {
     editor = new Editor({target: document.getElementById("container")});
 }
 
-export function makeEmptyFile() {
+export async function makeEmptyFile() {
+    await askSaveChanges();
     editor.$destroy();
     editor = new Editor({target: document.getElementById("container"), props:{content: ""}});
     updateFileInfo({filename: "untitled.txt", path: "", content: ""});
@@ -24,6 +26,7 @@ export async function saveFile(saveAs = false) {
 }
 
 export async function openFile() {
+    await askSaveChanges();
     let _path = await dialog.open() as string;
     let name = _path.split(path.sep).pop();
     let content = await fs.readTextFile(_path);
@@ -43,4 +46,14 @@ export async function openNewWindow() {
         // an error occurred during webview window creation
         console.log("an error occurred during webview window creation");
     })
+}
+
+export async function askSaveChanges() {
+    if (get(unsaved)) {
+        if (await dialog.ask(`Do you want to save your changes to ${file.filename}?`)) {
+            await saveFile(file.path === "");
+            return true;
+        }
+    }
+    return false;
 }

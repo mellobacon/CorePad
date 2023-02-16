@@ -1,13 +1,14 @@
 <script lang="ts">
     export let items = [
-            {name: "N/A", action: () => {console.log()}},
-        ];
+        {name: "N/A", action: () => {console.log()}},
+    ];
+    export let selected: string;
 </script>
 
 <div class="radios">
     {#each items as item}
         <label for={item.name} class="radio">
-            <input type="radio" name="radio" id={item.name} checked on:input={item.action}>
+            <input type="radio" name="radio" id={item.name} checked={selected === item.name.toLowerCase()} on:input={item.action}>
             {item.name}
         </label>
     {/each}

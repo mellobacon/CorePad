@@ -3,6 +3,7 @@
     import { file_info } from "./Editor.svelte";
     import Menu from "./Menu.svelte";
     import {Menu as MenuIcon} from "carbon-icons-svelte";
+    import { askSaveChanges } from "../lib/scripts/file";
 
     let menubutton;
     let open = false;
@@ -30,7 +31,10 @@
         <button
             class="window-button"
             id="close"
-            on:click={async () => await appWindow.close()}
+            on:click={async () => {
+                await askSaveChanges();
+                await appWindow.close();
+            }}
         />
     </div>
 </div>

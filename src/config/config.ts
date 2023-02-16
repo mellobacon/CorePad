@@ -1,9 +1,10 @@
 import { register, unregisterAll } from '@tauri-apps/api/globalShortcut';
 import { makeEmptyFile, openFile, openNewWindow, saveFile } from '../lib/scripts/file';
-
+import config from "./config.json";
 export async function setTheme(name) {
     let json = await import(`../config/Themes/${name}-theme.json`);
     const theme = Object.entries(json.theme);
+    config.theme = name;
     for (const t of theme) {
         const property = `${t[0]}`;
         let value = t[1] as string;
@@ -22,6 +23,7 @@ export async function getShortcuts() {
         //{shortcut: "CommandOrControl+Shift+S", action: () => {console.log('Shortcut triggered3');}},
         {shortcut: "CommandOrControl+P", action: () => {window.print()}}
     ]
+    await unregisterAll();
     for (const {shortcut, action} of shortcuts) {
         await register(shortcut, action);
     }
